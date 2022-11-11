@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import ja from 'vuetify/es5/locale/ja'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -20,9 +21,6 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
@@ -37,6 +35,7 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -45,6 +44,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'nuxt-webfontloader',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -56,15 +56,26 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: 'ja',
+    },
+  },
+
+  webfontloader: {
+    google: {
+      families: ['Noto+Sans+JP:400;700', 'Roboto:400;700'],
     },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
+    lang: {
+      locales: { ja },
+      current: 'ja',
+    },
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -79,6 +90,14 @@ export default {
     },
   },
 
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: ['~/assets/scss/style.scss'],
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  watchers: {
+    webpack: {
+      poll: 1000,
+    },
+  },
 }

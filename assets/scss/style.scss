@@ -1,0 +1,141 @@
+@import 'common';
+#app {
+  @extend %notosans;
+
+  color: color(sub);
+
+  img {
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+}
+
+.v-main {
+  &__wrap {
+    padding: 40px;
+  }
+}
+
+.v-data-table {
+  caption {
+    font-size: 18px;
+    font-weight: bold;
+    color: #686868;
+  }
+
+  tbody {
+    tr {
+      &:nth-last-of-type(odd) {
+        td {
+          background-color: rgba(color(main), 0.1);
+        }
+      }
+    }
+  }
+}
+
+.v-overlay {
+  z-index: 1000 !important;
+
+  .v-data-table {
+    tbody {
+      tr {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .detail {
+    &-container {
+      position: relative;
+    }
+
+    &-inner {
+      width: 90vw;
+      min-width: 1200px;
+      max-height: 700px;
+      padding: 20px;
+      overflow: auto;
+      background-color: #fff;
+      border-radius: 6px;
+    }
+  }
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+[dir='ltr'] {
+  .v-application {
+    .results {
+      .v-data-table-header {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          content: '';
+          background-color: color(main);
+        }
+
+        [role='columnheader'] {
+          position: relative;
+          text-align: center !important;
+
+          span {
+            @extend %notosans-bold;
+
+            font-size: 0.8vw;
+            color: color(main);
+          }
+
+          .v-icon {
+            position: absolute;
+            top: calc(50% - 8px);
+            right: 5px;
+          }
+        }
+      }
+
+      tbody {
+        td {
+          max-width: 200px;
+          height: auto;
+          padding: 10px;
+          overflow: hidden;
+          font-size: 0.78vw;
+          white-space: nowrap;
+          border-right: 1px solid rgba(color(main), 0.15);
+
+          &:first-of-type {
+            border-left: 1px solid rgba(color(main), 0.15);
+          }
+        }
+      }
+    }
+  }
+
+  .regist-form {
+    .v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) {
+      .v-input__control {
+        .v-input__slot {
+          border: 1px solid rgba(#000, 0.38);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+input[type='number'] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    margin: 0 !important;
+    appearance: textfield !important;
+  }
+}
