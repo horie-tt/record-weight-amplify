@@ -6,11 +6,7 @@
   v-btn(@click="createTodo") Create
   v-data-table(:headers="headers" :items="todos" hide-default-footer)
     template(v-slot:item.updatedAt="props")
-      td {{ dateFormat(props.item.updatedAt) }}
-
-  //- ul.mt-2
-  //-   li(v-for="todo in todos" :key="todo.id")
-  //-     | {{ todo.name }} : {{ todo.description }} {{ dateFormat(todo.updatedAt) }}
+      td {{ $dayjs(props.item.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
 </template>
 
 <script>
@@ -41,10 +37,6 @@ export default {
     this.subscribe()
   },
   methods: {
-    dateFormat(date) {
-      const dt = new Date(date)
-      return dt.toLocaleString()
-    },
     async createTodo() {
       const { name, description } = this
       if (!name || !description) return false
@@ -55,7 +47,6 @@ export default {
       })
       this.name = ''
       this.description = ''
-      // this.getTodos()
     },
     async getTodos() {
       const todos = await API.graphql({

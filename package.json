@@ -17,6 +17,7 @@
   "dependencies": {
     "@aws-amplify/ui-vue": "^2.4.26",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/dayjs": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
     "aws-amplify": "^4.3.43",
     "core-js": "^3.19.3",

@@ -44,6 +44,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/dayjs',
     'nuxt-webfontloader',
   ],
 

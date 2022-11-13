@@ -3,7 +3,7 @@ amplify-authenticator
   v-row(justify="center" align="center")
     v-col(cols="12" sm="8" md="6")
       v-card
-        v-row.title(color="red darken-1" class="mb-6" no-gutters)
+        v-row.title(color="red darken-1" class="mb-6 pa-2" no-gutters)
           v-col(cols="12" md="2")
             v-layout(wrap)
               v-img.img(src="mona-loading-default.gif" max-width="72")
