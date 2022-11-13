@@ -1,5 +1,6 @@
 <template lang="pug">
 amplify-authenticator
+  amplify-sign-in(slot="sign-in" :hide-sign-up="true")
   v-row(justify="center" align="center")
     v-col(cols="12" sm="8" md="6")
       v-card
