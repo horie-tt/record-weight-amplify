@@ -66,6 +66,9 @@ export default {
       (v) => /.+@.+/.test(v) || 'E-mail must be valid',
     ],
   }),
+  mounted() {
+    this.items[0].value = this.$dayjs(new Date()).format('YYYY/MM/DD')
+  },
 }
 </script>
 
