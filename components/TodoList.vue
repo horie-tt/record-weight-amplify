@@ -1,12 +1,12 @@
 <template lang="pug">
-.todo
-  h1 TodoApp
-  v-text-field(v-model="name" label="Name")
-  v-text-field(v-model="description" label="Description")
-  v-btn(@click="createTodo") Create
-  v-data-table(:headers="headers" :items="todos" hide-default-footer)
-    template(v-slot:item.updatedAt="props")
-      td {{ $dayjs(props.item.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
+v-list-item.todo
+  v-list-item-content
+    v-text-field(v-model="name" label="Name")
+    v-text-field(v-model="description" label="Description")
+    v-btn(@click="createTodo") Create
+    v-data-table(:headers="headers" :items="todos" hide-default-footer)
+      template(v-slot:item.updatedAt="props")
+        td {{ $dayjs(props.item.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
 </template>
 
 <script>
@@ -44,6 +44,7 @@ export default {
       await API.graphql({
         query: createTodo,
         variables: { input: todo },
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
       })
       this.name = ''
       this.description = ''
@@ -51,11 +52,15 @@ export default {
     async getTodos() {
       const todos = await API.graphql({
         query: listTodos,
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
       })
       this.todos = todos.data.listTodos.items
     },
     subscribe() {
-      API.graphql({ query: onCreateTodo }).subscribe({
+      API.graphql({
+        query: onCreateTodo,
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+      }).subscribe({
         next: (eventData) => {
           const todo = eventData.value.data.onCreateTodo
           if (this.todos.some((item) => item.name === todo.name)) return // remove duplications
