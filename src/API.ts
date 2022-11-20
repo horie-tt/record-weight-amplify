@@ -63,6 +63,7 @@ export type Todo = {
   description?: string | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type UpdateTodoInput = {
@@ -72,6 +73,68 @@ export type UpdateTodoInput = {
 };
 
 export type DeleteTodoInput = {
+  id: string,
+};
+
+export type CreateWeightInput = {
+  id?: string | null,
+  date: string,
+  weight: number,
+  bmi: number,
+  bodyFatPer: number,
+  muscleMass: number,
+  visceralFat: number,
+};
+
+export type ModelWeightConditionInput = {
+  date?: ModelStringInput | null,
+  weight?: ModelFloatInput | null,
+  bmi?: ModelFloatInput | null,
+  bodyFatPer?: ModelFloatInput | null,
+  muscleMass?: ModelFloatInput | null,
+  visceralFat?: ModelFloatInput | null,
+  and?: Array< ModelWeightConditionInput | null > | null,
+  or?: Array< ModelWeightConditionInput | null > | null,
+  not?: ModelWeightConditionInput | null,
+};
+
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Weight = {
+  __typename: "Weight",
+  id: string,
+  date: string,
+  weight: number,
+  bmi: number,
+  bodyFatPer: number,
+  muscleMass: number,
+  visceralFat: number,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type UpdateWeightInput = {
+  id: string,
+  date?: string | null,
+  weight?: number | null,
+  bmi?: number | null,
+  bodyFatPer?: number | null,
+  muscleMass?: number | null,
+  visceralFat?: number | null,
+};
+
+export type DeleteWeightInput = {
   id: string,
 };
 
@@ -103,6 +166,25 @@ export type ModelIDInput = {
 export type ModelTodoConnection = {
   __typename: "ModelTodoConnection",
   items:  Array<Todo | null >,
+  nextToken?: string | null,
+};
+
+export type ModelWeightFilterInput = {
+  id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  weight?: ModelFloatInput | null,
+  bmi?: ModelFloatInput | null,
+  bodyFatPer?: ModelFloatInput | null,
+  muscleMass?: ModelFloatInput | null,
+  visceralFat?: ModelFloatInput | null,
+  and?: Array< ModelWeightFilterInput | null > | null,
+  or?: Array< ModelWeightFilterInput | null > | null,
+  not?: ModelWeightFilterInput | null,
+};
+
+export type ModelWeightConnection = {
+  __typename: "ModelWeightConnection",
+  items:  Array<Weight | null >,
   nextToken?: string | null,
 };
 
@@ -144,6 +226,30 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionWeightFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  date?: ModelSubscriptionStringInput | null,
+  weight?: ModelSubscriptionFloatInput | null,
+  bmi?: ModelSubscriptionFloatInput | null,
+  bodyFatPer?: ModelSubscriptionFloatInput | null,
+  muscleMass?: ModelSubscriptionFloatInput | null,
+  visceralFat?: ModelSubscriptionFloatInput | null,
+  and?: Array< ModelSubscriptionWeightFilterInput | null > | null,
+  or?: Array< ModelSubscriptionWeightFilterInput | null > | null,
+};
+
+export type ModelSubscriptionFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
+};
+
 export type CreateTodoMutationVariables = {
   input: CreateTodoInput,
   condition?: ModelTodoConditionInput | null,
@@ -157,6 +263,7 @@ export type CreateTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -173,6 +280,7 @@ export type UpdateTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -189,6 +297,70 @@ export type DeleteTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateWeightMutationVariables = {
+  input: CreateWeightInput,
+  condition?: ModelWeightConditionInput | null,
+};
+
+export type CreateWeightMutation = {
+  createWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateWeightMutationVariables = {
+  input: UpdateWeightInput,
+  condition?: ModelWeightConditionInput | null,
+};
+
+export type UpdateWeightMutation = {
+  updateWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteWeightMutationVariables = {
+  input: DeleteWeightInput,
+  condition?: ModelWeightConditionInput | null,
+};
+
+export type DeleteWeightMutation = {
+  deleteWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -204,6 +376,7 @@ export type GetTodoQuery = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -223,6 +396,53 @@ export type ListTodosQuery = {
       description?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetWeightQueryVariables = {
+  id: string,
+};
+
+export type GetWeightQuery = {
+  getWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListWeightsQueryVariables = {
+  filter?: ModelWeightFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListWeightsQuery = {
+  listWeights?:  {
+    __typename: "ModelWeightConnection",
+    items:  Array< {
+      __typename: "Weight",
+      id: string,
+      date: string,
+      weight: number,
+      bmi: number,
+      bodyFatPer: number,
+      muscleMass: number,
+      visceralFat: number,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -230,6 +450,7 @@ export type ListTodosQuery = {
 
 export type OnCreateTodoSubscriptionVariables = {
   filter?: ModelSubscriptionTodoFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateTodoSubscription = {
@@ -240,11 +461,13 @@ export type OnCreateTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateTodoSubscriptionVariables = {
   filter?: ModelSubscriptionTodoFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateTodoSubscription = {
@@ -255,11 +478,13 @@ export type OnUpdateTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteTodoSubscriptionVariables = {
   filter?: ModelSubscriptionTodoFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteTodoSubscription = {
@@ -270,5 +495,69 @@ export type OnDeleteTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateWeightSubscriptionVariables = {
+  filter?: ModelSubscriptionWeightFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateWeightSubscription = {
+  onCreateWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateWeightSubscriptionVariables = {
+  filter?: ModelSubscriptionWeightFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdateWeightSubscription = {
+  onUpdateWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteWeightSubscriptionVariables = {
+  filter?: ModelSubscriptionWeightFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeleteWeightSubscription = {
+  onDeleteWeight?:  {
+    __typename: "Weight",
+    id: string,
+    date: string,
+    weight: number,
+    bmi: number,
+    bodyFatPer: number,
+    muscleMass: number,
+    visceralFat: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
