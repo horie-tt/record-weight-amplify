@@ -11,7 +11,7 @@ type Todo @model @auth(rules: [{ allow: owner }]) {
 
 type Weight @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  date: String!
+  date: AWSDateTime!
   weight: Float!
   bmi: Float!
   bodyFatPer: Float!
